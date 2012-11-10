@@ -1,0 +1,50 @@
+<cardapios>
+	<atualizado>true</atualizado>
+	<cardapio>
+		<restaurante>química</restaurante>
+		<horario>almoço</horario>
+		<dia>segunda</dia>
+		<hashmap>
+		  <elemento>
+			<chave>acompanhamento</chave>
+			<valor>Purê de batatas</chave>
+		  </elemento>
+		  <elemento>
+			<chave>principal</chave>
+			<valor>bife</chave>
+		  </elemento>
+		  .
+		  .
+		  .
+		  <elemento>
+			<chave>suco</chave>
+			<valor>refresco</chave>
+		  </elemento>
+		</hashmap>
+	</cardapio>
+	<cardapio>
+		<restaurante>central</restaurante>
+		<horario>janta</horario>
+		<dia>quinta</dia>
+		<hashmap>
+		  <elemento>
+			<chave>acompanhamento</chave>
+			<valor>Purê de batatas</chave>
+		  </elemento>
+		  <elemento>
+			<chave>principal</chave>
+			<valor>bife</chave>
+		  </elemento>
+		  .
+		  .
+		  .
+		  <elemento>
+			<chave>suco</chave>
+			<valor>refresco</chave>
+		  </elemento>
+		</hashmap>
+	</cardapio>
+	.
+	.
+	.
+</cardapios>

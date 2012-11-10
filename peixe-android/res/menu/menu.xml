@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/itemRefresh" android:visible="true" android:title="@string/refresh" android:enabled="true" android:icon="@drawable/ic_menu_refresh"></item>
+    <item android:id="@+id/itemPreferences" android:title="@string/preferences" android:icon="@drawable/options"></item>
+    <item android:id="@+id/itemMensagem" android:title="@string/enviarMensagem" android:icon="@drawable/ic_menu_send"></item>
+    <item android:id="@+id/itemSobre" android:title="Sobre" android:icon="@drawable/ic_menu_info_details"></item>
+    
+</menu>

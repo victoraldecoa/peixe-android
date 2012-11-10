@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="br.com.hojeehpeixe.android" android:versionName="1.0" android:versionCode="1" android:installLocation="preferExternal">
+      
+    <uses-sdk 
+	     android:minSdkVersion="7" 
+	     android:targetSdkVersion="14"
+     />
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        
+        <activity android:name=".SplashActivity"
+                  android:label="@string/app_name" android:theme="@android:style/Theme.Light.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+		<activity android:name=".ConfiguracoesActivity" android:noHistory="true" android:theme="@android:style/Theme.Black"></activity>
+		<activity android:name=".PeixeActivity" android:noHistory="true" android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+		<activity android:name=".ErroActivity" android:noHistory="true" android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+		<activity android:name=".MensagemActivity" android:noHistory="true" android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+		<activity android:name=".SobreActivity" android:noHistory="true" android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+		
+		<activity android:name="com.google.ads.AdActivity"
+              android:configChanges="keyboard|keyboardHidden|orientation|screenLayout"/>
+  		
+    </application> 	
+  	
+</manifest>

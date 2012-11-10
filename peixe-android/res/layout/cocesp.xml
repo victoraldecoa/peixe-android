@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:id="@+id/tabCocespLayout"
+  android:background="@color/darkGray">
+  >
+  	
+<RelativeLayout
+  		android:id="@+id/barraCocesp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingTop="5dp"
+		android:paddingRight="10dp">
+		
+		 <TextView 
+			 android:layout_width="wrap_content"
+			 android:id="@+id/textoHorarioCocesp"
+			 android:textAppearance="@android:style/TextAppearance.Large"
+			 android:paddingLeft="10dp"
+			 android:text="@string/Almoco"
+			 android:layout_height="wrap_content"
+			 android:layout_centerVertical="true"
+			 android:textColor="@color/white">
+		 </TextView>
+  	
+		<Button 
+			android:text="117"
+			android:textColor="@color/lightRed"
+			android:textStyle="bold"
+			android:id="@+id/botaoDownCocesp" 
+			android:layout_width="80dp"
+			android:layout_height="40dp"
+			android:layout_marginLeft="10dp"
+			android:textSize="12dp"
+			android:layout_alignParentRight="true"
+			android:drawableLeft="@drawable/dislike">
+		</Button>
+		
+		<Button android:text="12" 
+			android:id="@+id/botaoUpCocesp" 
+			android:textStyle="bold"
+			android:layout_width="80dp"
+			android:layout_height="40dp"
+			android:textColor="@color/lightBlue" 
+			android:textSize="12dp"
+			android:drawableLeft="@drawable/like"
+			android:layout_toLeftOf="@id/botaoDownCocesp"
+			>
+		</Button>
+</RelativeLayout>
+
+	<LinearLayout 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+		android:id="@+id/linearLayout1">
+	  		
+	  		<TextView
+	  			android:textColor="@color/white" 
+	  			android:text="11:00-" 
+	  			android:layout_width="wrap_content" 
+	  			android:layout_height="wrap_content" 
+	  			android:id="@+id/horarioCocespAbertura">
+	  		</TextView>
+	  		
+	  		<TextView
+	  			android:textColor="@color/white" 
+	  			android:text="14:00" 
+	  			android:layout_width="wrap_content" 
+	  			android:layout_height="wrap_content" 
+	  			android:id="@+id/horarioCocespFechamento">
+	  		</TextView>
+	</LinearLayout>
+	
+	<LinearLayout 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+	        
+	  	<TextView 
+	  		android:layout_width="wrap_content" 
+	  		android:id="@+id/pratoCocesp1" 
+	  		android:textAppearance="?android:attr/textAppearanceLarge" 
+	  		android:text="@string/StringCocespPrato1" 
+	  		android:textColor="@color/white"
+	  		android:layout_height="wrap_content">
+	  	</TextView>
+	  	
+	  	<TextView android:textColor="@color/white" android:layout_width="wrap_content" android:id="@+id/pratoCocesp2" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringCocespPrato2" android:layout_height="wrap_content"></TextView>
+	  	<TextView android:textColor="@color/white" android:layout_width="wrap_content" android:id="@+id/pratoCocesp3" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringCocespPrato3" android:layout_height="wrap_content"></TextView>
+	  	<TextView android:textColor="@color/white" android:layout_width="wrap_content" android:id="@+id/pratoCocesp4" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringCocespPrato4" android:layout_height="wrap_content"></TextView>
+	  	<TextView android:textColor="@color/white" android:layout_width="wrap_content" android:id="@+id/pratoCocesp5" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringCocespPrato5" android:layout_height="wrap_content"></TextView>
+	  	<TextView android:textColor="@color/white" android:layout_width="wrap_content" android:id="@+id/pratoCocesp6" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringCocespPrato6" android:layout_height="wrap_content"></TextView>
+	  	
+	  	<TextView android:textColor="@color/white" android:paddingTop="2px" android:text="nº Kcal" android:id="@+id/caloriasCocesp" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+	  	
+	</LinearLayout>
+</LinearLayout>

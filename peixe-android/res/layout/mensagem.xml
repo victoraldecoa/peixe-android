@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+    <LinearLayout 
+    	android:orientation="vertical" 
+    	android:layout_width="fill_parent" 
+    	android:layout_height="fill_parent"
+    	android:padding="3px"
+    	>
+      
+      <TextView android:text="Email:" android:id="@+id/emailLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+      
+      <EditText android:layout_height="wrap_content" android:id="@+id/email" android:inputType="textEmailAddress" android:layout_width="fill_parent">
+		<requestFocus></requestFocus>
+      </EditText>
+      
+      <TextView android:text="Tipo:" android:id="@+id/tipoLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+      
+      <Spinner 
+        android:id="@+id/tipoSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/selecioneTipo"
+    	/>
+    	
+      <TextView android:text="Restaurante:" android:id="@+id/tipoLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+      
+      <Spinner 
+        android:id="@+id/restauranteSpinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:prompt="@string/selecioneRestaurante"
+    	/>
+     
+     
+      <TextView android:text="Destino:" android:id="@+id/destinoLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+      
+      	<RadioGroup
+	      android:layout_width="fill_parent"
+	      android:layout_height="wrap_content"
+	      android:orientation="vertical"
+	      android:id="@+id/destinoRadioGroup">
+	      
+	      <RadioButton android:id="@+id/destinoRadioCoseas"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:text="Equipe Bandejão (COSEAS)" />
+	          
+	      <RadioButton android:id="@+id/destinoRadioPeixe"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:text="Equipe Hoje é Peixe!" />
+	          
+		</RadioGroup>
+    
+    	<TextView android:text="Mensagem" android:id="@+id/conteudoLabel" android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+    
+        <EditText android:id="@+id/conteudo" android:inputType="textMultiLine" android:layout_height="118dp" android:layout_width="fill_parent"></EditText>
+        
+        <Button android:text="Enviar" android:id="@+id/botaoEnviar" android:layout_width="120dp" android:layout_height="wrap_content"></Button>
+        
+    </LinearLayout>
+    
+</ScrollView>

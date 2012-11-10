@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" 
+	 android:fillViewport="true">
+	 
+	<LinearLayout
+	  xmlns:android="http://schemas.android.com/apk/res/android"
+	  android:orientation="vertical"
+	  android:layout_width="fill_parent"
+	  android:layout_height="fill_parent" 
+	  android:id="@+id/configuracoes"
+	  android:weightSum="1">
+	    <!-- 
+	    <TextView android:paddingTop="20px" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/exibirText" android:layout_width="wrap_content" android:text="Exibir Restaurantes:" ></TextView>
+	    
+	    <CheckBox android:layout_height="wrap_content" android:id="@+id/checkBoxQuimica" android:layout_width="wrap_content" android:text="Química" ></CheckBox>
+	    <CheckBox android:layout_height="wrap_content" android:id="@+id/checkBoxCentral" android:layout_width="wrap_content" android:text="Central" ></CheckBox>
+	    <CheckBox android:layout_height="wrap_content" android:id="@+id/checkBoxCocesp" android:layout_width="wrap_content" android:text="Cocesp" ></CheckBox>
+	    <CheckBox android:layout_height="wrap_content" android:id="@+id/checkBoxProfessores" android:layout_width="wrap_content" android:text="Professores" ></CheckBox>
+	     -->
+	     
+	    <TextView android:paddingTop="20px" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:id="@+id/preferenciasText" android:layout_width="wrap_content" android:text="Preferências:" ></TextView>
+	  
+	    <CheckBox android:layout_height="wrap_content" android:id="@+id/checkBoxVotacao" android:layout_width="wrap_content" android:text="Exibir votação" ></CheckBox>
+	    <!-- 
+	    <TextView 
+	    	android:layout_height="wrap_content" 
+	    	android:textAppearance="?android:attr/textAppearanceSmall" 
+	    	android:id="@+id/preferenciasObsText" 
+	    	android:layout_width="wrap_content" 
+	    	android:text="      * Pode deixar o app mais lento" ></TextView>
+	     -->
+	    
+	    <Button android:layout_marginTop="25dp" android:layout_height="wrap_content" android:layout_width="140dp" android:text="Salvar"  android:id="@+id/botaoCardapio"></Button>
+	    
+	</LinearLayout>
+
+</ScrollView>

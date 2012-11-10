@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:id="@+id/tabProfessoresLayout">
+  	<LinearLayout
+  	android:id="@+id/tabProfessoresText"
+  	android:orientation="horizontal"
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content" android:paddingBottom="15px" android:paddingTop="10px">
+  		<TextView android:text="11:00-" android:id="@+id/horarioProfessoresAbertura" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+  		<TextView android:text="14:00" android:id="@+id/horarioProfessoresFechamento" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+  	</LinearLayout> 
+    <TextView android:layout_width="wrap_content" android:id="@+id/pratoProfessores1" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringProfessoresPrato1" android:layout_height="wrap_content"></TextView>
+  	<TextView android:layout_width="wrap_content" android:id="@+id/pratoProfessores2" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringProfessoresPrato2" android:layout_height="wrap_content"></TextView>
+  	<TextView android:layout_width="wrap_content" android:id="@+id/pratoProfessores3" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringProfessoresPrato3" android:layout_height="wrap_content"></TextView>
+  	<TextView android:layout_width="wrap_content" android:id="@+id/pratoProfessores4" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringProfessoresPrato4" android:layout_height="wrap_content"></TextView>
+  	<TextView android:layout_width="wrap_content" android:id="@+id/pratoProfessores5" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringProfessoresPrato5" android:layout_height="wrap_content"></TextView>
+  	<TextView android:layout_width="wrap_content" android:id="@+id/pratoProfessores6" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/StringProfessoresPrato6" android:layout_height="wrap_content"></TextView>
+	
+	<TextView android:paddingTop="5px" android:text="nº Kcal" android:id="@+id/caloriasProfessores" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+
+	<!--  <RatingBar android:paddingTop="8px" android:id="@+id/ratingBarProfessore" android:layout_width="wrap_content" android:layout_height="wrap_content"></RatingBar>
+	-->
+</LinearLayout>

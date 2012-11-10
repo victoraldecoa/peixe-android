@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  		android:id="@+id/barra"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingTop="5dp"
+		android:paddingRight="10dp"
+		android:background="@color/almocoColor">
+		 
+		 <TextView android:layout_width="wrap_content"
+			 android:id="@+id/textoHorario"
+			 android:textAppearance="@android:style/TextAppearance.Large"
+			 android:paddingLeft="10dp"
+			 android:text="@string/Almoco"
+			 android:layout_height="wrap_content"
+			 android:layout_gravity="center_horizontal">
+		 </TextView>
+  	
+		<Button android:text="117"
+			android:textColor="@color/lightRed"
+			android:textStyle="bold"
+			android:id="@+id/botaoDownCentral" 
+			android:layout_width="80dp"
+			android:layout_height="40dp"
+			android:layout_marginLeft="10dp"
+			android:textSize="12dp"
+			android:layout_alignParentRight="true"
+			android:drawableLeft="@drawable/dislike"
+			>
+		</Button>
+		
+		<Button android:text="12" 
+			android:id="@+id/botaoUpCentral" 
+			android:textStyle="bold"
+			android:layout_width="80dp"
+			android:layout_height="40dp"
+			android:textColor="@color/lightBlue" 
+			android:textSize="12dp"
+			android:drawableLeft="@drawable/like"
+			android:layout_toLeftOf="@id/botaoDownCentral">
+		</Button>
+		
+</RelativeLayout>

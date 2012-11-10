@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, PeixeActivity!</string>
+    <string name="app_name">Hoje é Peixe</string>
+    <string name="segunda">Segunda</string>
+    <string name="Hoje">Hoje</string>
+    <string name="Almoco">Almoço</string>
+    <string name="Jantar">Jantar</string>
+    
+    <string name="Ontem">&lt;</string>
+    <string name="Amanha">&gt;</string>
+    <string name="Opcoes">Opções</string>
+    <string name="HorarioFuncionamento">Horário de Funcionamento:</string>
+    
+    <!-- Armazenam os pratos do bandeijao da quimica -->
+    <string name="StringQuimicaPrato1">Química1</string>
+    <string name="StringQuimicaPrato2">Química2</string>
+    <string name="StringQuimicaPrato3">Química3</string>
+    <string name="StringQuimicaPrato4">Química4</string>
+    <string name="StringQuimicaPrato5">Química5</string>
+    <string name="StringQuimicaPrato6">Química6</string>
+    
+    <!-- Armazenam os pratos do bandeijao central -->
+    <string name="StringCentralPrato1">Central1</string>
+    <string name="StringCentralPrato2">Central2</string>
+    <string name="StringCentralPrato3">Central3</string>
+    <string name="StringCentralPrato4">Central4</string>
+    <string name="StringCentralPrato5">Central5</string>
+    <string name="StringCentralPrato6">Central6</string>
+    
+    <!-- Armazenam os pratos do bandeijao COCESP -->
+    <string name="StringCocespPrato1">Cocesp1</string>
+	<string name="StringCocespPrato2">Cocesp2</string>
+	<string name="StringCocespPrato3">Cocesp3</string>
+	<string name="StringCocespPrato4">Cocesp4</string>
+	<string name="StringCocespPrato5">Cocesp5</string>
+	<string name="StringCocespPrato6">Cocesp6</string>
+	
+	<!-- Armazenam os pratos do bandeijao Fisica -->
+    <string name="StringFisicaPrato1">Fisica1</string>
+	<string name="StringFisicaPrato2">Fisica2</string>
+	<string name="StringFisicaPrato3">Fisica3</string>
+	<string name="StringFisicaPrato4">Fisica4</string>
+	<string name="StringFisicaPrato5">Fisica5</string>
+	<string name="StringFisicaPrato6">Fisica6</string>
+	
+    <!-- Armazenam os pratos do bandeijao Clube dos Professores -->
+    <string name="StringProfessoresPrato1">Professores 1</string>
+    <string name="StringProfessoresPrato2">Professores 2</string>
+    <string name="StringProfessoresPrato3">Professores 3</string>
+    <string name="StringProfessoresPrato4">Professores 4</string>
+    <string name="StringProfessoresPrato5">Professores 5</string>
+    <string name="StringProfessoresPrato6">Professores 6</string>
+    <string name="cardapio_nao_disponivel">Este cardápio estará disponível em uma versão futura do aplicativo. Aguarde.</string>
+    
+    <string name="selecioneTipo">Selecione o tipo da mensagem</string>
+    <string-array name="tipos">
+        <item>Sugestão</item>
+        <item>Reclamação</item>
+        <item>Dúvida</item>
+        <item>Elogio</item>
+        <item>Bug</item>
+    </string-array>
+    
+    <string name="selecioneRestaurante">Selecione o restaurante</string>
+	<string-array name="restaurantes">
+	    <item>Todos</item>
+        <item>Central</item>
+        <item>Química</item>
+        <item>Cocesp</item>
+        <item>Física</item>
+        <item>Professores</item>
+    </string-array>
+	<string name="refresh">Atualizar</string>
+	<string name="preferences">Preferências</string>
+	<string name="enviarMensagem">Enviar mensagem</string>
+	<string name="sobre">O &quot;Hoje é Peixe!&quot; é um aplicativo para auxiliar a comunidade USP a escolher o melhor restaurante Coseas para se alimentar.</string>
+	<string name="developers">Cássio Rocha Scofield Souza\nEric Kendi Shiraishi\nFlavio Ribeiro de Aquino Figueiredo Mello\nGabriela da Cruz Botelho\nGiovanna da Cruz Botelho\nGuilherme Amaral Jaquetto\nGuilherme Fernandes Ribeiro\nLeandro Costa Cherighim\nMaria Cecilia Mazzoni Martins Ferreira\nThiago Krempser\nTiago Martines\nVictor Maia Aldecôa</string>
+	<string name="verAlmoco">Ver almoço</string>
+	<string name="verJantar">Ver jantar</string>
+    
+	<string name="comCacheSemConexao">Não foi possível encontrar uma conexão. O cardápio que você irá visualizar é o desta semana mas pode estar desatualizado.</string>
+</resources>

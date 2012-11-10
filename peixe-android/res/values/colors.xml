@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red">#ff0000</color>
+	<color name="green">#00ff00</color>
+	<color name="blue">#0000ff</color>
+	<color name="lightBlue">#008000</color>
+	<color name="lightRed">#D40000</color>
+	<color name="white">#FFFFFF</color>
+	<color name="black">#000000</color>
+	<color name="darkGray">#202020</color>
+	<color name="gray">#303030</color>
+	<color name="almocoColor">#FFF1B0</color>
+	<color name="jantaColor">#00526E</color>
+	<color name="usp_orange">#fcb421</color>
+	<color name="usp_blue_light">#64c4d0</color>
+	<color name="usp_blue">#1094ab</color>
+</resources>

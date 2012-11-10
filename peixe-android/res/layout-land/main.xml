@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  	  
+	<LinearLayout 
+			android:orientation="horizontal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:paddingLeft="4dp"
+		    android:paddingTop="4dp"
+		    xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:id="@+id/Main"
+		    android:background="@color/black"
+		    android:weightSum="1">
+	
+		<LinearLayout 
+			android:orientation="vertical"
+		    android:layout_width="130dp"
+		    android:layout_height="fill_parent">	    
+		    
+		    <include layout="@layout/data" android:layout_weight="1"/>
+		    <include layout="@layout/rodape" android:layout_weight="1"/>
+  	
+		    
+		</LinearLayout>
+		
+		<LinearLayout
+			android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+			android:paddingLeft="5dp"> 
+			
+			<include layout="@layout/abas"/>
+			
+		</LinearLayout>
+		    
+	</LinearLayout>
