@@ -15,25 +15,21 @@ To start developing this app:
 2- Install Git:
  - http://git-scm.com/
 
-3- Download dependencies on another folder:
+3- Download project and dependencies:
 
  - peixe-services-android
 
  git clone https://github.com/victoraldecoa/peixe-services-android.git
  cd peixe-services-android
- git checkout 2.0
+ git checkout 1.0
 
-4- Configure peixe-android project
+ git clone https://github.com/victoraldecoa/peixe-android.git
+
+4- Configure peixe-services-android project
 
  - On Eclipse, click File, New, Other
  - On the windows that appears, expand "Android" and select "Android Project from Existing Code"
  - Browse for peixe-services-android/peixe-services-android
- - On Package Explorer, right-click on the recently created project, click "Properties"
- - Click Android
- - Select the latest Target you have
+ - Finish
 
-5- Configure the other projects
- - peixe-android
-
-6- Configure Peixe's project
- - Go to Peixe's project Properties, click Android, on Library box click "Add..." and add peixe-android-services
+5- Repeat step 4 for peixe-android
