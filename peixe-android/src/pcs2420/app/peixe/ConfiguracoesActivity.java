@@ -1,6 +1,6 @@
-package br.com.hojeehpeixe.android;
+package pcs2420.app.peixe;
 
-import br.com.hojeehpeixe.android.R;
+import pcs2420.app.peixe.R;
 
 import android.app.Activity;
 import android.content.Context;

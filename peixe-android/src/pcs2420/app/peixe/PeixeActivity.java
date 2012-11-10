@@ -1,4 +1,4 @@
-package br.com.hojeehpeixe.android;
+package pcs2420.app.peixe;
 
 import android.app.TabActivity;
 import java.text.DateFormat;

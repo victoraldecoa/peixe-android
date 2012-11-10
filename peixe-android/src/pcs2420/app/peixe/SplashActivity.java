@@ -1,4 +1,4 @@
-package br.com.hojeehpeixe.android;
+package pcs2420.app.peixe;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -70,9 +70,9 @@ public class SplashActivity extends Activity {
 
 				Intent i;
 				if (erro_cardapio == null) {
-					i = new Intent(SplashActivity.this, br.com.hojeehpeixe.android.PeixeActivity.class);
+					i = new Intent(SplashActivity.this, pcs2420.app.peixe.PeixeActivity.class);
 				} else {
-					i = new Intent(SplashActivity.this, br.com.hojeehpeixe.android.ErroActivity.class);
+					i = new Intent(SplashActivity.this, pcs2420.app.peixe.ErroActivity.class);
 					i.putExtra("erro", erro_cardapio);
 				}
 				

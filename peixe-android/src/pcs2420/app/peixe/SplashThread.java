@@ -1,4 +1,4 @@
-package br.com.hojeehpeixe.android;
+package pcs2420.app.peixe;
 
 public class SplashThread extends Thread {
 	
