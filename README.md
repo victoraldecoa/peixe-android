@@ -17,13 +17,10 @@ To start developing this app:
 
 3- Download project and dependencies:
 
- - peixe-services-android
-
- git clone https://github.com/victoraldecoa/peixe-services-android.git
- cd peixe-services-android
- git checkout 1.0
-
- git clone https://github.com/victoraldecoa/peixe-android.git
+    git clone https://github.com/victoraldecoa/peixe-android.git
+    git clone https://github.com/victoraldecoa/peixe-services-android.git
+    cd peixe-services-android
+    git checkout 1.0
 
 4- Configure peixe-services-android project
 
