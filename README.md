@@ -1,10 +1,11 @@
 peixe-android
 =============
 
-App for University of São Paulo's students to see the restaurant's menus (code and issues in Portuguese-BR)
+Android App for University of São Paulo's students to see the restaurant's menus (code and issues in Portuguese-BR)
 
-Aplicativo para os estudantes da USP verem os cardápios dos restaurantes.
+Aplicativo Android para os estudantes da USP visualizarem os cardápios dos restaurantes.
 
+Google Play: https://play.google.com/store/apps/details?id=pcs2420.app.peixe
 
 To start developing this app:
 -------------
