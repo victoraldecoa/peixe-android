@@ -20,8 +20,6 @@ To start developing this app:
 
     git clone https://github.com/victoraldecoa/peixe-android.git
     git clone https://github.com/victoraldecoa/peixe-service-android.git
-    cd peixe-services-android
-    git checkout v1.0
 
 4- Configure peixe-services-android project
 
