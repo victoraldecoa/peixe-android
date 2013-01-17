@@ -10,12 +10,14 @@ import br.com.hojeehpeixe.services.android.CardapioAsynkService;
 import br.com.hojeehpeixe.services.android.UpDownService;
 import br.com.hojeehpeixe.services.android.exceptions.UpDownException;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 
 public class SplashActivity extends Activity {
 	private final int tempoEspera = 1500;
+	private Thread getUpDownThread = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,21 +28,25 @@ public class SplashActivity extends Activity {
 		final long first_time = SystemClock.uptimeMillis();
 		
 		// busca por ups e downs
-		final Thread getUpDownThread = (new Thread() {
-			public void run() {
-				try {
-					PeixeActivity.getAllUpDownFromService(UpDownService.getAllUpDown());
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (XmlPullParserException e) {
-					e.printStackTrace();
-				} catch (UpDownException e) {
-					e.printStackTrace();
+		boolean exibirVotacao = false;
+		//exibirVotacao = getPreferences(Context.MODE_PRIVATE).getBoolean("exibirVotacao", false);
+		if (exibirVotacao) {
+			getUpDownThread = (new Thread() {
+				public void run() {
+					try {
+						PeixeActivity.getAllUpDownFromService(UpDownService.getAllUpDown());
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (XmlPullParserException e) {
+						e.printStackTrace();
+					} catch (UpDownException e) {
+						e.printStackTrace();
+					}
 				}
-			}
-		});
-		getUpDownThread.start();
-		
+			});
+			getUpDownThread.start();
+		}
+
 		// atualiza os cardápios
 		FileInputStream input;
 
@@ -58,7 +64,8 @@ public class SplashActivity extends Activity {
 			public void onResult(boolean result) {
 				// Espera a outra thread acabar pra iniciar PeixeActivity
 				try {
-					getUpDownThread.join();
+					if (getUpDownThread != null)
+						getUpDownThread.join();
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
