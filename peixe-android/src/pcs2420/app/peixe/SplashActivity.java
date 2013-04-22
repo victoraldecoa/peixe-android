@@ -1,12 +1,11 @@
 package pcs2420.app.peixe;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import br.com.hojeehpeixe.services.android.CardapioAsynkService;
+import br.com.hojeehpeixe.services.android.CardapioCompleto;
 import br.com.hojeehpeixe.services.android.UpDownService;
 import br.com.hojeehpeixe.services.android.exceptions.UpDownException;
 import android.app.Activity;
@@ -40,22 +39,13 @@ public class SplashActivity extends Activity {
 			}
 		});
 		getUpDownThread.start();
-		
-		// atualiza os cardápios
-		FileInputStream input;
-
-		try {
-			input = openFileInput("cardapios.json");
-		} catch (FileNotFoundException e) {
-			input = null;
-		}
 
 		CardapioAsynkService cardapioService = new CardapioAsynkService(this, new CardapioAsynkService.OnCardapioServiceResponse() {
 			
 			private String erro_cardapio = null;
 
 			@Override
-			public void onResult(boolean result) {
+			public void onResult(CardapioCompleto result) {
 				// Espera a outra thread acabar pra iniciar PeixeActivity
 				try {
 					getUpDownThread.join();
@@ -85,8 +75,6 @@ public class SplashActivity extends Activity {
 			}
 		});
 		
-		FileInputStream[] params = new FileInputStream[1];
-		params[0] = input;
-		cardapioService.execute(params);
+		cardapioService.execute();
 	}
 }

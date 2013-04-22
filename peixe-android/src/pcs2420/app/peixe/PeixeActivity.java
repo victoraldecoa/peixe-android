@@ -1,6 +1,9 @@
 package pcs2420.app.peixe;
 
 import android.app.TabActivity;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,8 +13,9 @@ import com.google.ads.AdRequest;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
 
+import br.com.hojeehpeixe.services.android.CardapioAsynkService;
+import br.com.hojeehpeixe.services.android.CardapioCompleto;
 import br.com.hojeehpeixe.services.android.CardapioDia;
-import br.com.hojeehpeixe.services.android.CardapioService;
 import br.com.hojeehpeixe.services.android.UpDownTask;
 
 import android.app.AlertDialog;
@@ -22,6 +26,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -80,9 +85,9 @@ public class PeixeActivity extends TabActivity {
 	private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 	private EnviaUpDown enviaUpDownThread;
-	private AtualizaCardapio atualizaCardapioThread;
-
-	private CardapioService cardapioService;
+	private AtualizaUpDown atualizaCardapioThread;
+	
+	private CardapioCompleto cardapioCompleto;
 	
 	private AdView adView;
 	private final String MY_AD_UNIT_ID = "a14efdf1f297426";
@@ -167,6 +172,7 @@ public class PeixeActivity extends TabActivity {
 	
 	private TextView textoHorarioFisica;
 	private RelativeLayout barraFisica;
+	private CardapioAsynkService cardapioAsynkService;
 	
 	@Override
 	protected void onPause()
@@ -181,18 +187,20 @@ public class PeixeActivity extends TabActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		
-		cardapioService = CardapioService.getInstance();
+		cardapioAsynkService = new CardapioAsynkService(this, new PeixeCardapioServiceResponde());
 		
 		// Não sabemos o motivo, mas as vezes abre o PeixeActivity direto sem o
 		// cardápio ter atualizado. Se acontecer isso, volta para a SplashActivity
-		if (!cardapioService.hasUpdate()) {
+		if (!CardapioAsynkService.foiAtualizado()) {
 			Intent i = new Intent(this, SplashActivity.class);
+			Log.d(PeixeActivity.class.getSimpleName(), "Cardápio não atualizado. Voltando para a SplashActivity");
 			startActivity(i);
 			finish();
 			return;
 		}
-
+		
+		cardapioAsynkService.execute();
+		
 		inicializaHorario();
 		
 		getPreferencias();
@@ -218,22 +226,6 @@ public class PeixeActivity extends TabActivity {
 		else 
 			pintaTabSelecionada(0);
 		//setUpDown();
-		
-		populaCardapios();
-		
-		if (cardapioService.noConnection && cardapioService.isCacheAtual()) {
-			AlertDialog alertDialog = new AlertDialog.Builder(this).create();  
-		    alertDialog.setTitle("Atenção!");  
-		    alertDialog.setMessage(getString(R.string.comCacheSemConexao));  
-		    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {  
-		      public void onClick(DialogInterface dialog, int which) {  
-		        return;  
-		    } });   
-
-		    alertDialog.show();
-		} else if (cardapioService.message != null) {
-			Toast.makeText(this, cardapioService.message,Toast.LENGTH_LONG).show();
-		}
 		
 		// TODO descomentar no free inicializaPropaganda();
 	}
@@ -534,10 +526,10 @@ public class PeixeActivity extends TabActivity {
 		CardapioDia central;
 		if (horarioSelecionado == 0) {
 			alteraHorarioCentral("11:00", "14:00");
-			central = cardapioService.central.almoco[diaDaSemana];
+			central = cardapioCompleto.central.almoco[diaDaSemana];
 		} else {
 			alteraHorarioCentral("17:30", "19:45");
-			central = cardapioService.central.janta[diaDaSemana];
+			central = cardapioCompleto.central.janta[diaDaSemana];
 		}
 
 		try
@@ -592,10 +584,10 @@ public class PeixeActivity extends TabActivity {
 		{
 			CardapioDia quimica;
 			if (horarioSelecionado == 0) {
-				quimica = cardapioService.quimica.almoco[diaDaSemana];
+				quimica = cardapioCompleto.quimica.almoco[diaDaSemana];
 				alteraHorarioQuimica("11:00", "14:00");
 			} else {
-				quimica = cardapioService.quimica.janta[diaDaSemana];
+				quimica = cardapioCompleto.quimica.janta[diaDaSemana];
 				alteraHorarioQuimica("17:30", "19:45");
 			}
 
@@ -647,10 +639,10 @@ public class PeixeActivity extends TabActivity {
 		CardapioDia pref;
 		if (horarioSelecionado == 0) {
 			alteraHorarioCocesp("11:30", "13:50");
-			pref = cardapioService.prefeitura.almoco[diaDaSemana];
+			pref = cardapioCompleto.prefeitura.almoco[diaDaSemana];
 		} else { 
 			alteraHorarioCocesp("17:30", "19:45");
-			pref = cardapioService.prefeitura.janta[diaDaSemana];
+			pref = cardapioCompleto.prefeitura.janta[diaDaSemana];
 		}
 
 		// Se não for sábado nem domingo
@@ -718,11 +710,11 @@ public class PeixeActivity extends TabActivity {
 			// Se é almoço, pega do cardápio almoço
 			if (horarioSelecionado == 0) {
 				alteraHorarioFisica("11:30", "13:50");
-				fisica = cardapioService.fisica.almoco[diaDaSemana];
+				fisica = cardapioCompleto.fisica.almoco[diaDaSemana];
 			}
 			// Se é janta, verifica se está entre Segunda e Sexta
 			else {
-				fisica = cardapioService.fisica.janta[diaDaSemana];
+				fisica = cardapioCompleto.fisica.janta[diaDaSemana];
 				alteraHorarioFisica("17:30", "19:45");
 			} 
 	
@@ -1027,7 +1019,7 @@ public class PeixeActivity extends TabActivity {
 		}
 		else if (selectedTab == fisicaTabIndex)
 		{
-			if(cardapioService.fisica.almoco[diaDaSemana] == null)
+			if(cardapioCompleto.fisica.almoco[diaDaSemana] == null)
 				return false;
 			
 			if(diaDaSemana > 4 && horarioSelecionado == JANTA )
@@ -1812,13 +1804,18 @@ public class PeixeActivity extends TabActivity {
 
 	public void atualizaCardapio() 
 	{
-		dialog = ProgressDialog.show(this, "", "Atualizando... aguarde", true,
+		dialog = ProgressDialog.show(this, "Aguarde...", "Atualizando cardápio", true,
 				false);
+		
+		if (isExibirVotacao()) {
+			atualizaCardapioThread = new AtualizaUpDown(this, cardapioAsynkService, dialog);
 
-		atualizaCardapioThread = new AtualizaCardapio(this,
-				this.isExibirVotacao(), dialog);
+			atualizaCardapioThread.start();
+		}
+		cardapioAsynkService = new CardapioAsynkService(this, new PeixeCardapioServiceResponde());
 
-		atualizaCardapioThread.start();
+		CardapioAsynkService.forcaAtualizar();
+		cardapioAsynkService.execute();
 	}
 
 	@Override
@@ -1866,5 +1863,39 @@ public class PeixeActivity extends TabActivity {
 	
 	private int getSelectedTab() {
 		return getTabHost().getCurrentTab();
+	}
+	
+	public class PeixeCardapioServiceResponde implements CardapioAsynkService.OnCardapioServiceResponse {
+		@Override
+		public void onResult(CardapioCompleto result) {
+			cardapioCompleto = result;
+			populaCardapios();
+			
+			if (cardapioCompleto.semConexao && cardapioCompleto.ehCacheAtual) {
+				AlertDialog alertDialog = new AlertDialog.Builder(PeixeActivity.this).create();  
+			    alertDialog.setTitle("Atenção!");  
+			    alertDialog.setMessage(getString(R.string.comCacheSemConexao));  
+			    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+				  public void onClick(DialogInterface dialog, int which) {
+				    return;
+				  }
+			    });
+
+			    alertDialog.show();
+			} else if (cardapioCompleto.mensagem != null) {
+				Toast.makeText(PeixeActivity.this, cardapioCompleto.mensagem, Toast.LENGTH_LONG).show();
+			}
+			
+			if (dialog != null) {
+				if (atualizaCardapioThread != null && atualizaCardapioThread.isAlive())
+					dialog.setMessage("Atualizando Ups e Downs");
+				else
+					dialog.dismiss();
+			}
+		}
+		
+		@Override
+		public void onError(String error) {
+		}
 	}
 }
