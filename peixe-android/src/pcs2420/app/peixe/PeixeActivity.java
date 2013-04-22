@@ -120,7 +120,7 @@ public class PeixeActivity extends TabActivity {
 	/**
 	 * Habilita aquisição e envio de ups e downs
 	 */
-	private static Boolean votacaoEnabled = true;
+	private static Boolean votacaoEnabled = false;
 
 	/**
 	 * Indica o índice da aba para cada restaurante, esse número é variável pois
@@ -446,48 +446,27 @@ public class PeixeActivity extends TabActivity {
 		 * editor.putBoolean(COCESP_STRING, cocespEnabled);
 		 * editor.putBoolean(PROFESSORES_STRING, professoresEnabled);
 		 */
-		editor.putBoolean(EXIBIR_VOTACAO, votacaoEnabled);
-
+		
+		// TODO descomentar quando o updown tiver funcionando de novo
+		//editor.putBoolean(EXIBIR_VOTACAO, votacaoEnabled);
+		votacaoEnabled = false;
+		
 		// editor.putInt(HORARIO_SELECIONADO_STRING,horarioSelecionado);
 		// editor.putInt(DATA_SELECIONADA_STRING, dataSelecionada);
 
 		editor.commit();
 	}
 
-	private boolean isExibirVotacao() 
-	{
+	private boolean isExibirVotacao() 	{
 		preferencias = getPreferences(Context.MODE_PRIVATE);
-		votacaoEnabled = preferencias.getBoolean(EXIBIR_VOTACAO, true);
+		// TODO descomentar quando o updown tiver funcionando de novo
+		//votacaoEnabled = preferencias.getBoolean(EXIBIR_VOTACAO, true);
+		votacaoEnabled = false;
 		return votacaoEnabled;
 	}
 
 	private void getPreferencias() {
-		preferencias = getPreferences(Context.MODE_PRIVATE);
-
-		/*
-		 * TODO descomentar apos consertar os botoes up down quimicaEnabled =
-		 * preferencias.getBoolean(QUIMICA_STRING, true); centralEnabled =
-		 * preferencias.getBoolean(CENTRAL_STRING, true); cocespEnabled =
-		 * preferencias.getBoolean(COCESP_STRING, true); professoresEnabled =
-		 * preferencias.getBoolean(PROFESSORES_STRING, false);
-		 */
-		votacaoEnabled = preferencias.getBoolean(EXIBIR_VOTACAO, true);
-
-		try {
-			/*
-			 * TODO descomentar apos consertar os botoes up down quimicaEnabled
-			 * = getIntent().getExtras().getBoolean(QUIMICA_STRING, true);
-			 * centralEnabled =
-			 * getIntent().getExtras().getBoolean(CENTRAL_STRING, true);
-			 * cocespEnabled = getIntent().getExtras().getBoolean(COCESP_STRING,
-			 * true); professoresEnabled =
-			 * getIntent().getExtras().getBoolean(PROFESSORES_STRING, true);
-			 */
-			votacaoEnabled = getIntent().getExtras().getBoolean(EXIBIR_VOTACAO,
-					true);
-
-		} catch (Exception e) {
-		}
+		isExibirVotacao();
 	}
 
 	@Override
