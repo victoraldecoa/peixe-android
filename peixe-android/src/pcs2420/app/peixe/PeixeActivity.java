@@ -16,7 +16,6 @@ import com.google.ads.AdView;
 import br.com.hojeehpeixe.services.android.CardapioAsynkService;
 import br.com.hojeehpeixe.services.android.CardapioCompleto;
 import br.com.hojeehpeixe.services.android.CardapioDia;
-import br.com.hojeehpeixe.services.android.UpDownTask;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -83,9 +82,6 @@ public class PeixeActivity extends TabActivity {
 	private static SharedPreferences preferencias;
 	private ProgressDialog dialog;
 	private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-	private EnviaUpDown enviaUpDownThread;
-	private AtualizaUpDown atualizaCardapioThread;
 	
 	private CardapioCompleto cardapioCompleto;
 	
@@ -1008,28 +1004,6 @@ public class PeixeActivity extends TabActivity {
 		return true;
 	}
 
-	private void enviaUpDown(String bandejao, boolean up) 
-	{
-
-		if (isJaVotou()) {
-			Toast.makeText(this, "Você já votou nesse bandejão hoje.",Toast.LENGTH_LONG).show();
-			return;
-		}
-		
-		if(isDiaHorarioValido()==false)
-		{
-			Toast.makeText(this, "Não é possível votar hoje.",Toast.LENGTH_LONG).show();
-			return;			
-		}
-
-		dialog = ProgressDialog.show(this, "", "Enviando voto... aguarde",
-				true, false);
-
-		enviaUpDownThread = new EnviaUpDown(this,dialog,bandejao,horarioSelecionado,diaDaSemana,up);
-		enviaUpDownThread.start();
-
-	}
-
 	public static void zeraAllUpDown() {
 		for (int i = 0; i < 7; i++) {
 			zeraUpDown(ALMOCO, i);
@@ -1101,30 +1075,6 @@ public class PeixeActivity extends TabActivity {
 		}
 	}
 
-	public void getUpDown(int diaDaSemana) {
-		// Não pega ups e downs dos dias futuros, pois não se pode votar neles
-		if (dataSelecionada > 0) {
-			zeraUpDown(ALMOCO, diaDaSemana);
-			zeraUpDown(JANTA, diaDaSemana);
-			return;
-		}
-
-		if ((jaPegouUpDownAlmoco[diaDaSemana] == false && horarioSelecionado == ALMOCO)
-				|| (jaPegouUpDownJanta[diaDaSemana] == false && horarioSelecionado == JANTA)) {
-			dialog = ProgressDialog.show(this, "", "Atualizando... aguarde",
-					true, false);
-			try {
-				getAllUpDownFromService(new UpDownTask().execute().get());
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			} catch (ExecutionException e1) {
-				e1.printStackTrace();
-			}
-			dialog.dismiss();
-		}
-
-	}
-
 	public void setUpDown() {
 		TabHost mytabs = getTabHost();
 		int selectedTab = mytabs.getCurrentTab();
@@ -1138,76 +1088,17 @@ public class PeixeActivity extends TabActivity {
 		Button upFisicaText = (Button) findViewById(R.id.botaoUpFisica);
 		Button downFisicaText = (Button) findViewById(R.id.botaoDownFisica);
 
-		if (dataSelecionada > 0 || votacaoEnabled == false || isDiaHorarioValido()==false) 
-		{
-			if (horarioSelecionado == ALMOCO) {
-				if (selectedTab == quimicaTabIndex) {
-					upQuimicaText.setEnabled(false);
-					downQuimicaText.setEnabled(false);
-					upQuimicaAlmoco[diaDaSemana] = 0;
-					downQuimicaAlmoco[diaDaSemana] = 0;
-				} else if (selectedTab == centralTabIndex) {
-					upCentralText.setEnabled(false);
-					downCentralText.setEnabled(false);
-					upCentralAlmoco[diaDaSemana] = 0;
-					downCentralAlmoco[diaDaSemana] = 0;
-				} else if (selectedTab == cocespTabIndex) {
-					upCocespText.setEnabled(false);
-					downCocespText.setEnabled(false);
-					upCocespAlmoco[diaDaSemana] = 0;
-					downCocespAlmoco[diaDaSemana] = 0;
-				} else if (selectedTab == fisicaTabIndex) {
-					upFisicaText.setEnabled(false);
-					downFisicaText.setEnabled(false);
-					upFisicaAlmoco[diaDaSemana] = 0;
-					downFisicaAlmoco[diaDaSemana] = 0;
-				}
-			} else {
-				if (selectedTab == quimicaTabIndex) {
-					upQuimicaText.setEnabled(false);
-					downQuimicaText.setEnabled(false);
-					upQuimicaJanta[diaDaSemana] = 0;
-					downQuimicaJanta[diaDaSemana] = 0;
-				} else if (selectedTab == centralTabIndex) {
-					upCentralText.setEnabled(false);
-					downCentralText.setEnabled(false);
-					upCentralJanta[diaDaSemana] = 0;
-					downCentralJanta[diaDaSemana] = 0;
-				} else if (selectedTab == cocespTabIndex) {
-					upCocespText.setEnabled(false);
-					downCocespText.setEnabled(false);
-					upCocespJanta[diaDaSemana] = 0;
-					downCocespJanta[diaDaSemana] = 0;
-				} else if (selectedTab == fisicaTabIndex) {
-					upFisicaText.setEnabled(false);
-					downFisicaText.setEnabled(false);
-					upFisicaJanta[diaDaSemana] = 0;
-					downFisicaJanta[diaDaSemana] = 0;
-				}
-			}
-
-		} else {
-			upQuimicaText.setEnabled(true);
-			downQuimicaText.setEnabled(true);
-			upCentralText.setEnabled(true);
-			downCentralText.setEnabled(true);
-			upCocespText.setEnabled(true);
-			downCocespText.setEnabled(true);
-			upFisicaText.setEnabled(true);
-			downFisicaText.setEnabled(true);
-
-			getUpDown(diaDaSemana);
-		}
-
+		
 		// Inivisibiliza todos os botões
-		/*
-		 * upCocespText.setVisibility(View.INVISIBLE);
-		 * downCocespText.setVisibility(View.INVISIBLE);
-		 * upCocespText.setVisibility(View.INVISIBLE);
-		 * downCocespText.setVisibility(View.INVISIBLE);
-		 * upCocespText.setVisibility(View.INVISIBLE);
-		 * downCocespText.setVisibility(View.INVISIBLE);
-		 */
+		
+		upCocespText.setVisibility(View.INVISIBLE);
+		downCocespText.setVisibility(View.INVISIBLE);
+		upQuimicaText.setVisibility(View.INVISIBLE);
+		downQuimicaText.setVisibility(View.INVISIBLE);
+		upFisicaText.setVisibility(View.INVISIBLE);
+		downFisicaText.setVisibility(View.INVISIBLE);
+		upCentralText.setVisibility(View.INVISIBLE);
+		downCentralText.setVisibility(View.INVISIBLE);
 
 		// Visibiliza apenas buttons da aba selecionada
 		/*
@@ -1271,56 +1162,48 @@ public class PeixeActivity extends TabActivity {
 		Button botaoUpQuimica = (Button) findViewById(R.id.botaoUpQuimica);
 		botaoUpQuimica.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				enviaUpDown(QUIMICA_STRING, true);
 			}
 		});
 
 		Button botaoDownQuimica = (Button) findViewById(R.id.botaoDownQuimica);
 		botaoDownQuimica.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				enviaUpDown(QUIMICA_STRING, false);
 			}
 		});
 
 		Button botaoUpCocesp = (Button) findViewById(R.id.botaoUpCocesp);
 		botaoUpCocesp.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				enviaUpDown(COCESP_STRING, true);
 			}
 		});
 
 		Button botaoDownCocesp = (Button) findViewById(R.id.botaoDownCocesp);
 		botaoDownCocesp.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				enviaUpDown(COCESP_STRING, false);
 			}
 		});
 
 		Button botaoUpCentral = (Button) findViewById(R.id.botaoUpCentral);
 		botaoUpCentral.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				enviaUpDown(CENTRAL_STRING, true);
 			}
 		});
 
 		Button botaoDownCentral = (Button) findViewById(R.id.botaoDownCentral);
 		botaoDownCentral.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				enviaUpDown(CENTRAL_STRING, false);
 			}
 		});
 		
 		Button botaoUpFisica = (Button) findViewById(R.id.botaoUpFisica);
 		botaoUpFisica.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				enviaUpDown(FISICA_STRING, true);
 			}
 		});
 
 		Button botaoDownFisica = (Button) findViewById(R.id.botaoDownFisica);
 		botaoDownFisica.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				enviaUpDown(FISICA_STRING, false);
 			}
 		});
 	}
@@ -1786,11 +1669,6 @@ public class PeixeActivity extends TabActivity {
 		dialog = ProgressDialog.show(this, "Aguarde...", "Atualizando cardápio", true,
 				false);
 		
-		if (isExibirVotacao()) {
-			atualizaCardapioThread = new AtualizaUpDown(this, cardapioAsynkService, dialog);
-
-			atualizaCardapioThread.start();
-		}
 		cardapioAsynkService = new CardapioAsynkService(this, new PeixeCardapioServiceResponde());
 
 		CardapioAsynkService.forcaAtualizar();
@@ -1866,9 +1744,6 @@ public class PeixeActivity extends TabActivity {
 			}
 			
 			if (dialog != null) {
-				if (atualizaCardapioThread != null && atualizaCardapioThread.isAlive())
-					dialog.setMessage("Atualizando Ups e Downs");
-				else
 					dialog.dismiss();
 			}
 		}

@@ -1,13 +1,7 @@
 package pcs2420.app.peixe;
 
-import java.io.IOException;
-
-import org.xmlpull.v1.XmlPullParserException;
-
 import br.com.hojeehpeixe.services.android.CardapioAsynkService;
 import br.com.hojeehpeixe.services.android.CardapioCompleto;
-import br.com.hojeehpeixe.services.android.UpDownService;
-import br.com.hojeehpeixe.services.android.exceptions.UpDownException;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,22 +18,6 @@ public class SplashActivity extends Activity {
 
 		final long first_time = SystemClock.uptimeMillis();
 		
-		// busca por ups e downs
-		final Thread getUpDownThread = (new Thread() {
-			public void run() {
-				try {
-					PeixeActivity.getAllUpDownFromService(UpDownService.getAllUpDown());
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (XmlPullParserException e) {
-					e.printStackTrace();
-				} catch (UpDownException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		getUpDownThread.start();
-
 		CardapioAsynkService cardapioService = new CardapioAsynkService(this, new CardapioAsynkService.OnCardapioServiceResponse() {
 			
 			private String erro_cardapio = null;
@@ -47,11 +25,6 @@ public class SplashActivity extends Activity {
 			@Override
 			public void onResult(CardapioCompleto result) {
 				// Espera a outra thread acabar pra iniciar PeixeActivity
-				try {
-					getUpDownThread.join();
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
 				
 				// Aguarda passar o tempo de espera
 				while (SystemClock.uptimeMillis() - first_time < tempoEspera);
